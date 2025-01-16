@@ -15,7 +15,7 @@ Antes de começar, você precisará ter instalado:
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/swapi.git
+   git clone https://github.com/0zymandi45/starwapi.git
    cd swapi
    ```
 
