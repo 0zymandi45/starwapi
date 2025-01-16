@@ -1,0 +1,6 @@
+Flask
+Flask-PyMongo
+Flask-Swagger-UI
+pytest
+python-dotenv
+mongomock

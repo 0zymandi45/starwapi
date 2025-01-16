@@ -1,0 +1,289 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Star Wars API",
+      "version": "1.0",
+      "description": "API para gerenciar informações de Planetas e Filmes do universo Star Wars."
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/planets": {
+        "get": {
+          "summary": "Obter todos os planetas",
+          "description": "Retorna uma lista de todos os planetas disponíveis.",
+          "parameters": [
+            {
+              "name": "expand",
+              "in": "query",
+              "description": "Expande os filmes associados a cada planeta.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de planetas.",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Planet"
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Criar um novo planeta",
+          "description": "Adiciona um novo planeta à API.",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Dados do planeta.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Planet"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Planeta criado com sucesso."
+            }
+          }
+        }
+      },
+      "/planets/{planet_id}": {
+        "get": {
+          "summary": "Obter um planeta por ID",
+          "description": "Retorna os dados de um planeta específico pelo ID.",
+          "parameters": [
+            {
+              "name": "planet_id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "expand",
+              "in": "query",
+              "description": "Expande os filmes associados ao planeta.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detalhes do planeta.",
+              "schema": {
+                "$ref": "#/definitions/Planet"
+              }
+            },
+            "404": {
+              "description": "Planeta não encontrado."
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualizar um planeta",
+          "description": "Atualiza os dados de um planeta específico pelo ID.",
+          "parameters": [
+            {
+              "name": "planet_id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Dados atualizados do planeta.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Planet"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Planeta atualizado com sucesso."
+            },
+            "404": {
+              "description": "Planeta não encontrado."
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir um planeta",
+          "description": "Remove um planeta da API pelo ID.",
+          "parameters": [
+            {
+              "name": "planet_id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Planeta excluído com sucesso."
+            },
+            "404": {
+              "description": "Planeta não encontrado."
+            }
+          }
+        }
+      },
+      "/films": {
+        "get": {
+          "summary": "Obter todos os filmes",
+          "description": "Retorna uma lista de todos os filmes disponíveis.",
+          "parameters": [
+            {
+              "name": "expand",
+              "in": "query",
+              "description": "Expande os planetas associados a cada filme.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de filmes.",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Film"
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Criar um novo filme",
+          "description": "Adiciona um novo filme à API.",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Dados do filme.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Film"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Filme criado com sucesso."
+            }
+          }
+        }
+      },
+      "/films/{film_id}": {
+        "get": {
+          "summary": "Obter um filme por ID",
+          "description": "Retorna os dados de um filme específico pelo ID.",
+          "parameters": [
+            {
+              "name": "film_id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "expand",
+              "in": "query",
+              "description": "Expande os planetas associados ao filme.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detalhes do filme.",
+              "schema": {
+                "$ref": "#/definitions/Film"
+              }
+            },
+            "404": {
+              "description": "Filme não encontrado."
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualizar um filme",
+          "description": "Atualiza os dados de um filme específico pelo ID.",
+          "parameters": [
+            {
+              "name": "film_id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Dados atualizados do filme.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Film"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Filme atualizado com sucesso."
+            },
+            "404": {
+              "description": "Filme não encontrado."
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir um filme",
+          "description": "Remove um filme da API pelo ID.",
+          "parameters": [
+            {
+              "name": "film_id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Filme excluído com sucesso."
+            },
+            "404": {
+              "description": "Filme não encontrado."
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Planet": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "climate": {"type": "string"},
+          "diameter": {"type": "integer"},
+          "population": {"type": "integer"},
+          "films": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "Film": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "release_date": {"type": "string"},
+          "director": {"type": "string"},
+          "planets": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+  
